@@ -1,18 +1,13 @@
+using BankingExample.Api.Helpers;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace BankingExample.Api
 {
@@ -40,6 +35,8 @@ namespace BankingExample.Api
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BankingExample.Api", Version = "v1" });
             });
+
+            services.AddMartenConfig(Configuration);
 
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddAutoMapper(typeof(Startup));

@@ -1,0 +1,30 @@
+version: "3"
+services:
+  db:
+    image: "postgres:11"
+    container_name: "merbes_postgres"
+    environment:
+        POSTGRES_USER: merbes_user
+        POSTGRES_PASSWORD: not_magical_scary
+        POSTGRES_DB: merbes_database
+    ports:
+      - "5432:5432"
+    volumes:
+      - merbes_dbdata:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  rabbitmq:
+    image: "rabbitmq:3-management"
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - 'rabbitmq_data:/data'
+    environment:
+      - "RABBITMQ_ERLANG_COOKIE=SWQOKODSQALRPCLNMEQG"
+      - "RABBITMQ_DEFAULT_USER=rabbitmq"
+      - "RABBITMQ_DEFAULT_PASS=rabbitmq"
+  
+volumes:
+    merbes_dbdata:
+    rabbitmq_data:
