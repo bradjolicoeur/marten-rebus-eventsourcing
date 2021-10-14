@@ -1,0 +1,10 @@
+POST https://localhost:5001/api/account/balances
+Accept: text/plain
+Content-Type: application/json
+
+{
+    "ids": [
+        "a3bec138-c3db-4c6e-92ae-44fa3ab43b43", 
+        "61b09de2-d15b-44e3-b35c-7342a9a57e43"
+    ]
+}

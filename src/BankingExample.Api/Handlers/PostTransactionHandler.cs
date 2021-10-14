@@ -3,6 +3,7 @@ using BankingExample.Api.Projections;
 using Marten;
 using MediatR;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -12,13 +13,25 @@ namespace BankingExample.Api.Handlers
     {
         public class AccountTransaction : IRequest<TransactionResults>
         {
+            public AccountTransaction()
+            {
+                Time = DateTime.UtcNow;
+            }
+
+            [Required]
             public Guid To { get; set; }
+
+            [Required]
             public Guid From { get; set; }
 
+            [Required]
+            [MaxLength(250)]
             public string Description { get; set; }
 
-            public DateTimeOffset Time { get; set; }
+            public DateTimeOffset Time { get; }
 
+            [Required]
+            [Range(1, int.MaxValue, ErrorMessage = "Please enter a value bigger than {1}")]
             public decimal Amount { get; set; }
         }
 

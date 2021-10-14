@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -15,10 +16,13 @@ namespace BankingExample.Api.Handlers
             public CreateAccount()
             {
                 AccountId = Guid.NewGuid();
+                CreatedAt = DateTime.UtcNow;
             }
+
+            [Required]
             public string Owner { get; set; }
             public Guid AccountId { get; }
-            public DateTimeOffset CreatedAt { get; set; }
+            public DateTimeOffset CreatedAt { get; }
             public decimal StartingBalance { get; set; } = 0;
 
         }

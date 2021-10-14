@@ -4,6 +4,7 @@ using Marten.Events;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,34 +15,22 @@ namespace BankingExample.Api.Handlers
     {
         public class QueryAccountLedger : IRequest<AccountLedger>
         {
-            public int Skip { get; internal set; }
-            public int Take { get; internal set; }
-            public int CurrentPage { get; internal set; }
-            public string Search { get; internal set; }
-            public Guid Id { get; internal set; }
+      
+            [Required]
+            public Guid Id { get; set; }
 
-            public QueryAccountLedger(Guid id, int skip, int take, int currentPage, string search = null)
-            {
-                Skip = skip;
-                Take = take;
-                CurrentPage = currentPage;
-                Search = search;
-                Id = id;
-            }
         }
 
-        public class AccountLedger : IPagedData<object>
+        public class AccountLedger 
         {
-            public AccountLedger(IEnumerable<object> data, long count, int page)
+            public AccountLedger(IEnumerable<object> data, long count)
             {
                 Data = data;
                 Count = count;
-                Page = page;
             }
 
             public IEnumerable<object> Data { get; }
             public long Count { get; }
-            public int Page { get; }
         }
 
         public class Handler : IRequestHandler<QueryAccountLedger, AccountLedger>
@@ -57,9 +46,9 @@ namespace BankingExample.Api.Handlers
             {
                 using (var session = _store.LightweightSession())
                 {
-                    var stream = await session.Events.FetchStreamAsync(request.Id);
+                    var stream = await session.Events.FetchStreamAsync(request.Id, 0);
 
-                    return new AccountLedger(stream.Select(o => new { o.EventTypeName, o.Data, o.Version, o.Timestamp }), stream.Count, request.CurrentPage);
+                    return new AccountLedger(stream.Select(o => new { o.EventTypeName, o.Data, o.Version, o.Timestamp}), stream.Count);
                 }
             }
         }

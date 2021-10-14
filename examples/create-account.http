@@ -1,0 +1,21 @@
+POST https://localhost:5001/api/account/create http/1.1
+User-Agent: rest-client
+accept: text/plain
+Content-Type: application/json
+
+{
+  "owner": "Tommy",
+  "startingBalance": 200
+}
+
+# {
+#   "accountId": "61b09de2-d15b-44e3-b35c-7342a9a57e43"
+# }
+
+# {
+#   "accountId": "a3bec138-c3db-4c6e-92ae-44fa3ab43b43"
+# }
+
+# {
+#   "accountId": "baf0c6a7-dbf6-4840-85aa-a3cb7f55e45b"
+# }

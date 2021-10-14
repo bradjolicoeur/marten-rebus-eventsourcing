@@ -40,17 +40,25 @@ namespace BankingExample.Api.Controllers
         [HttpPost("balances")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(QueryAccountBalanceHandler.AccountBalances))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<QueryAccountBalanceHandler.AccountBalances> GetAccountBalances([FromBody] Guid[] ids, int skip = 0, int take = 100, int currentPage = 1)
+        public async Task<QueryAccountBalanceHandler.AccountBalances> GetAccountBalances([FromBody] QueryAccountBalanceHandler.QueryAccountBalance query)
         {
-            return  await _mediator.Send(new QueryAccountBalanceHandler.QueryAccountBalance(ids, skip, take, currentPage));
+            return  await _mediator.Send(query);
         }
 
         [HttpGet("ledger")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(QueryAccountLedgerHandler.AccountLedger))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<QueryAccountLedgerHandler.AccountLedger> GetAccountLedger(Guid id, int skip = 0, int take = 100, int currentPage = 1)
+        public async Task<QueryAccountLedgerHandler.AccountLedger> GetAccountLedger([FromQuery] QueryAccountLedgerHandler.QueryAccountLedger query)
         {
-            return await _mediator.Send(new QueryAccountLedgerHandler.QueryAccountLedger(id, skip, take, currentPage));
+            return await _mediator.Send(query);
+        }
+
+        [HttpGet("balances")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SearchAccountBalanceHandler.SearchAccountBalances))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
+        public async Task<SearchAccountBalanceHandler.SearchAccountBalances> SearchAccountBalances([FromQuery] SearchAccountBalanceHandler.QueryAccountBalance query)
+        {
+            return await _mediator.Send(query);
         }
 
     }
