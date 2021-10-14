@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿using BankingExample.Api.Events;
+using BankingExample.Api.Projections;
+using Marten;
+using MediatR;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -10,7 +13,7 @@ namespace BankingExample.Api.Handlers
         public class AccountTransaction : IRequest<TransactionResults>
         {
             public Guid To { get; set; }
-            public Guid Account { get; set; }
+            public Guid From { get; set; }
 
             public string Description { get; set; }
 
@@ -33,9 +36,50 @@ namespace BankingExample.Api.Handlers
 
         public class Handler : IRequestHandler<AccountTransaction, TransactionResults>
         {
+            private readonly IDocumentStore _store;
+
+            public Handler(IDocumentStore store)
+            {
+                _store = store;
+            }
+
             public Task<TransactionResults> Handle(AccountTransaction request, CancellationToken cancellationToken)
             {
-                return Task.FromResult(new TransactionResults(true, "fake response"));
+                TransactionResults result;
+
+                using (var session = _store.OpenSession())
+                {
+                    var account = session.Load<Account>(request.From);
+
+                    var spend = new AccountDebited
+                    {
+                        Amount = request.Amount,
+                        From = request.From,
+                        To = request.To,
+                        Description = request.Description,
+                    };
+
+                    if (account.HasSufficientFunds(spend))
+                    {
+                        // should not get here
+                        session.Events.Append(spend.From, spend);
+                        session.Events.Append(spend.To, spend.ToCredit());
+                        result = new TransactionResults(true, request.Description);
+                    }
+                    else
+                    {
+                        session.Events.Append(account.Id, new InvalidOperationAttempted
+                        {
+                            Description = "Overdraft"
+                        });
+                        result = new TransactionResults(false, "Overdraft");
+                    }
+                    // commit these changes
+                    session.SaveChanges();
+
+                }
+                
+                return Task.FromResult(result);
             }
         }
     }
