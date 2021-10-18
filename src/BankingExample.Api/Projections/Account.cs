@@ -8,6 +8,8 @@ namespace BankingExample.Api.Projections
         public Guid Id { get; set; }
         public string Owner { get; set; }
         public decimal Balance { get; set; }
+        public decimal Pending { get; set; }
+        public decimal AvailableBalance { get; set; }
 
         public DateTimeOffset CreatedAt { get; set; }
 
@@ -18,6 +20,7 @@ namespace BankingExample.Api.Projections
             Id = created.AccountId;
             Owner = created.Owner;
             Balance = created.StartingBalance;
+            AvailableBalance = created.StartingBalance;
             CreatedAt = UpdatedAt = created.CreatedAt;
 
             Console.ForegroundColor = ConsoleColor.DarkMagenta;
@@ -26,7 +29,7 @@ namespace BankingExample.Api.Projections
 
         public bool HasSufficientFunds(AccountDebited debit)
         {
-            var result = (Balance - debit.Amount) >= 0;
+            var result = (AvailableBalance - debit.Amount) >= 0;
             if (!result)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;

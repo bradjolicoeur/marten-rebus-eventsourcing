@@ -22,43 +22,48 @@ namespace BankingExample.Api.Controllers
         }
 
         [HttpPost("create")]
-        [ProducesResponseType(StatusCodes.Status201Created, Type= typeof(CreateAccountHandler.CreateAccountResponse))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type= typeof(CreateAccountHandler.CreateAccountResponse))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<CreateAccountHandler.CreateAccountResponse> PostCreate(CreateAccountHandler.CreateAccount command)
+        public async Task<ActionResult<CreateAccountHandler.CreateAccountResponse>> PostCreate(CreateAccountHandler.CreateAccount command)
         {
-            return await _mediator.Send(command);
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpPost("debit")]
-        [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(PostTransactionHandler.TransactionResults))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PostTransactionHandler.TransactionResults))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<PostTransactionHandler.TransactionResults> PostDebit(PostTransactionHandler.AccountTransaction command)
+        public async Task<ActionResult<PostTransactionHandler.TransactionResults>> PostDebit(PostTransactionHandler.AccountTransaction command)
         {
-            return await _mediator.Send(command);
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
 
         [HttpPost("balances")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(QueryAccountBalanceHandler.AccountBalances))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<QueryAccountBalanceHandler.AccountBalances> GetAccountBalances([FromBody] QueryAccountBalanceHandler.QueryAccountBalance query)
+        public async Task<ActionResult<QueryAccountBalanceHandler.AccountBalances>> GetAccountBalances([FromBody] QueryAccountBalanceHandler.QueryAccountBalance query)
         {
-            return  await _mediator.Send(query);
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpGet("ledger")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(QueryAccountLedgerHandler.AccountLedger))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<QueryAccountLedgerHandler.AccountLedger> GetAccountLedger([FromQuery] QueryAccountLedgerHandler.QueryAccountLedger query)
+        public async Task<ActionResult<QueryAccountLedgerHandler.AccountLedger>> GetAccountLedger([FromQuery] QueryAccountLedgerHandler.QueryAccountLedger query)
         {
-            return await _mediator.Send(query);
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpGet("balances")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(SearchAccountBalanceHandler.SearchAccountBalances))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<SearchAccountBalanceHandler.SearchAccountBalances> SearchAccountBalances([FromQuery] SearchAccountBalanceHandler.QueryAccountBalance query)
+        public async Task<ActionResult<SearchAccountBalanceHandler.SearchAccountBalances>> SearchAccountBalances([FromQuery] SearchAccountBalanceHandler.QueryAccountBalance query)
         {
-            return await _mediator.Send(query);
+            var result =  await _mediator.Send(query);
+            return Ok(result);
         }
 
     }

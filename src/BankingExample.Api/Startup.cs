@@ -1,4 +1,5 @@
 using BankingExample.Api.Helpers;
+using BankingExample.Api.Middleware;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -8,6 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Rebus.Config;
+using Rebus.Routing.TypeBased;
+using Rebus.ServiceProvider;
 
 namespace BankingExample.Api
 {
@@ -42,6 +46,12 @@ namespace BankingExample.Api
             services.AddAutoMapper(typeof(Startup));
             services.AddValidatorsFromAssemblyContaining<Startup>();
 
+            // Configure and register Rebus
+            services.AddRebus(configure => configure
+                .Transport(t => t.UseRabbitMq("amqp://rabbitmq:rabbitmq@localhost", "bankingexample.webapp"))
+                //.Routing(r => r.TypeBased().MapAssemblyOf<Startup>("example.paymentsaga"))
+                );
+
             services.AddHealthChecks();
         }
 
@@ -55,12 +65,20 @@ namespace BankingExample.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BankingExample.Api v1"));
             }
 
+            app.ApplicationServices.UseRebus();
+            //or optionally act on the bus
+            //app.ApplicationServices.UseRebus(async bus => await bus.Subscribe<ICompletedMakePayment>());
+
             app.UseHttpsRedirection();
             app.UseHealthChecks("/health");
 
             app.UseRouting();
 
             app.UseAuthorization();
+
+            // global error handler
+            app.UseMiddleware<ErrorHandlerMiddleware>();
+
 
             app.UseEndpoints(endpoints =>
             {
