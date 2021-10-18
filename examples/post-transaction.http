@@ -3,8 +3,8 @@ Accept: text/plain
 Content-Type: application/json
 
 {
-  "to": "3087e02a-b169-4b2c-8feb-03dac40bf217",
-  "from": "468dbc3a-6f0a-412c-ab51-23f4b8bc6ead",
+  "to": "468dbc3a-6f0a-412c-ab51-23f4b8bc6ead",
+  "from": "3087e02a-b169-4b2c-8feb-03dac40bf217",
   "description": "Transfer",
   "time": "2021-10-14T19:37:40.364Z",
   "amount": 50

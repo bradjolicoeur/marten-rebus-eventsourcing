@@ -23,7 +23,7 @@ namespace BankingExample.Api.Helpers
                 opts.AutoCreateSchemaObjects = AutoCreate.All;
 
                 // Turn on the async daemon in "Solo" mode
-                opts.Projections.AsyncMode = DaemonMode.Solo;
+                //opts.Projections.AsyncMode = DaemonMode.Solo;
 
                 opts.Projections.SelfAggregate<Account>(ProjectionLifecycle.Inline); 
 

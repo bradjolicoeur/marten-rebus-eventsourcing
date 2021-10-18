@@ -6,7 +6,6 @@ namespace BankingExample.Api.Events
     {
         public override void Apply(Account account)
         {
-            //account.AvailableBalance += Amount;
             account.Balance += Amount;
             account.Pending += Amount;
         }

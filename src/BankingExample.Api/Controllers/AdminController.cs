@@ -1,10 +1,12 @@
 ﻿using BankingExample.Api.Contracts.Response;
+using BankingExample.Api.Projections;
 using Marten;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BankingExample.Api.Controllers
@@ -23,13 +25,28 @@ namespace BankingExample.Api.Controllers
         [HttpGet("clear")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public string ClearDatabase()
+        public ActionResult<string> ClearDatabase()
         {
-
+            
             // Deletes all the documents stored in a Marten database
             _store.Advanced.Clean.DeleteAllDocuments();
 
-            return "All Documents Deleted";
+            return Ok("All Documents Deleted");
+
+        }
+
+        [HttpGet("rebuild")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
+        public async Task<ActionResult<string>> RebuildAccount()
+        {
+
+            // Deletes all the documents stored in a Marten database
+            using var daemon = _store.BuildProjectionDaemon();
+
+            await daemon.RebuildProjection<Account>(new CancellationToken());
+
+            return Ok("Rebuild Account Completed");
 
         }
     }
