@@ -1,3 +1,4 @@
+using BankingExample.Api.BusHandlers;
 using BankingExample.Api.Helpers;
 using BankingExample.Api.Middleware;
 using FluentValidation;
@@ -45,6 +46,9 @@ namespace BankingExample.Api
             services.AddMediatR(typeof(Startup).Assembly);
             services.AddAutoMapper(typeof(Startup));
             services.AddValidatorsFromAssemblyContaining<Startup>();
+
+            // Register Rebus handlers 
+            services.AutoRegisterHandlersFromAssemblyOf<PostTransactionHandler>();
 
             // Configure and register Rebus
             services.AddRebus(configure => configure

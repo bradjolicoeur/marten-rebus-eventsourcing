@@ -15,5 +15,15 @@ namespace BankingExample.Api.Events
             account.Pending -= Amount;
         }
 
+        public AccountCreditSettled ToCreditSettled()
+        {
+            return new AccountCreditSettled
+            {
+                Amount = Amount,
+                To = From,
+                From = To,
+                Description = Description
+            };
+        }
     }
 }

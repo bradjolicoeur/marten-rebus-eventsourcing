@@ -1,7 +1,10 @@
-﻿using BankingExample.Api.Events;
+﻿using AutoMapper;
+using BankingExample.Api.Contracts.Commands;
+using BankingExample.Api.Events;
 using BankingExample.Api.Projections;
 using Marten;
 using MediatR;
+using Rebus.Bus;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
@@ -9,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace BankingExample.Api.Handlers
 {
-    public class PostTransactionHandler
+    public class AcceptTransactionHandler
     {
         public class AccountTransaction : IRequest<TransactionResults>
         {
@@ -47,16 +50,28 @@ namespace BankingExample.Api.Handlers
             }
         }
 
+        public class AutoMapperProfile : Profile
+        {
+            public AutoMapperProfile()
+            {
+                CreateMap<AccountTransaction, PostTransaction>().ReverseMap();
+            }
+        }
+
         public class Handler : IRequestHandler<AccountTransaction, TransactionResults>
         {
             private readonly IDocumentStore _store;
+            private readonly IBus _bus;
+            private readonly IMapper _mapper;
 
-            public Handler(IDocumentStore store)
+            public Handler(IDocumentStore store, IBus bus, IMapper mapper)
             {
                 _store = store;
+                _bus = bus;
+                _mapper = mapper;
             }
 
-            public Task<TransactionResults> Handle(AccountTransaction request, CancellationToken cancellationToken)
+            public async Task<TransactionResults> Handle(AccountTransaction request, CancellationToken cancellationToken)
             {
                 TransactionResults result;
 
@@ -74,10 +89,9 @@ namespace BankingExample.Api.Handlers
 
                     if (account.HasSufficientFunds(spend))
                     {
-                        // should not get here
                         session.Events.Append(spend.From, spend);
                         session.Events.Append(spend.To, spend.ToCredit());
-                        result = new TransactionResults(true, request.Description);
+                        result = new TransactionResults(true, $"{request.Description} - Pending");
                     }
                     else
                     {
@@ -87,12 +101,16 @@ namespace BankingExample.Api.Handlers
                         });
                         result = new TransactionResults(false, "Overdraft");
                     }
+
                     // commit these changes
                     session.SaveChanges();
 
+                    var command = _mapper.Map<PostTransaction>(request);
+                    await _bus.SendLocal(command);
+
                 }
                 
-                return Task.FromResult(result);
+                return result;
             }
         }
     }

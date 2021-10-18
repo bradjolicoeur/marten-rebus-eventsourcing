@@ -31,9 +31,9 @@ namespace BankingExample.Api.Controllers
         }
 
         [HttpPost("debit")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(PostTransactionHandler.TransactionResults))]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AcceptTransactionHandler.TransactionResults))]
         [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<ActionResult<PostTransactionHandler.TransactionResults>> PostDebit(PostTransactionHandler.AccountTransaction command)
+        public async Task<ActionResult<AcceptTransactionHandler.TransactionResults>> PostDebit(AcceptTransactionHandler.AccountTransaction command)
         {
             var result = await _mediator.Send(command);
             return Ok(result);

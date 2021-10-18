@@ -52,6 +52,20 @@ namespace BankingExample.Api.Projections
             Console.WriteLine($"Crediting {Owner} {credit.Amount.ToString("C")}: {credit.Description}");
         }
 
+        public void Apply(AccountDebitSettled debit)
+        {
+            debit.Apply(this);
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"Settled Debit {Owner} ({debit.Amount.ToString("C")}): {debit.Description}");
+        }
+
+        public void Apply(AccountCreditSettled credit)
+        {
+            credit.Apply(this);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"Settled Credit {Owner} {credit.Amount.ToString("C")}: {credit.Description}");
+        }
+
         public override string ToString()
         {
             Console.ForegroundColor = ConsoleColor.White;
