@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BankingExample.Api.Contracts.Commands;
+using BankingExample.Contracts.Commands;
 using BankingExample.Domain.Events;
 using BankingExample.Domain.Projections;
 using Marten;

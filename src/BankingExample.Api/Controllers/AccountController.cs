@@ -1,4 +1,4 @@
-﻿using BankingExample.Api.Contracts.Response;
+﻿using BankingExample.Contracts.Response;
 using BankingExample.Api.Handlers;
 using BankingExample.Domain.Projections;
 using MediatR;

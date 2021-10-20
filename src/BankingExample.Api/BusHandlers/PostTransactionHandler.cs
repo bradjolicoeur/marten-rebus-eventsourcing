@@ -1,4 +1,4 @@
-﻿using BankingExample.Api.Contracts.Commands;
+﻿using BankingExample.Contracts.Commands;
 using BankingExample.Domain.Events;
 using BankingExample.Domain.Models;
 using BankingExample.Domain.Projections;

@@ -1,4 +1,4 @@
-﻿namespace BankingExample.Api.Contracts.Response
+﻿namespace BankingExample.Contracts.Response
 {
     public class BadRequestResponse
     {
