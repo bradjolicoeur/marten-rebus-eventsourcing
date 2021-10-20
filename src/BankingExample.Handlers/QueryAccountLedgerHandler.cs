@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BankingExample.Api.Handlers
+namespace BankingExample.Handlers
 {
     public class QueryAccountLedgerHandler
     {

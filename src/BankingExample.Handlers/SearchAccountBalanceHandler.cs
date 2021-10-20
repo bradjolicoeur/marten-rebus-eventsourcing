@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace BankingExample.Handlers
+namespace BankingExample.Api.Handlers
 {
     public class SearchAccountBalanceHandler
     {

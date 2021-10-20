@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace BankingExample.Api.Interfaces
+namespace BankingExample.Api.Contracts.Interfaces
 {
     public interface IPagedData<T>
     {

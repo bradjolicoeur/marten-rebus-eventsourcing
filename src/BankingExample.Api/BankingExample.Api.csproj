@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BankingExample.Api.Contracts\BankingExample.Api.Contracts.csproj" />
     <ProjectReference Include="..\BankingExample.Bus\BankingExample.Bus.csproj" />
     <ProjectReference Include="..\BankingExample.Contracts\BankingExample.Contracts.csproj" />
     <ProjectReference Include="..\BankingExample.Domain\BankingExample.Domain.csproj" />
