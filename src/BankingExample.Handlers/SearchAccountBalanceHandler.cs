@@ -1,5 +1,6 @@
 ﻿using BankingExample.Api.Contracts.Interfaces;
 using BankingExample.Domain.Projections;
+using BankingExample.Handlers.Helpers;
 using Marten;
 using Marten.Linq;
 using MediatR;
@@ -63,7 +64,7 @@ namespace BankingExample.Api.Handlers
                     var query = session.Query<Account>()
                         .Stats(out stats)
 
-                        //.If(!string.IsNullOrWhiteSpace(request.Search), x => x.Where(q => q.Owner.Contains(request.Search, StringComparison.OrdinalIgnoreCase)))
+                        .If(!string.IsNullOrWhiteSpace(request.Search), x => x.Where(q => q.Owner.Contains(request.Search, StringComparison.OrdinalIgnoreCase)))
 
                         .Skip(request.Skip)
                         .Take(request.Take)
