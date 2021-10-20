@@ -7,11 +7,9 @@ using Rebus.Handlers;
 using Rebus.Messages;
 using Rebus.Pipeline;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
-namespace BankingExample.Api.BusHandlers
+namespace BankingExample.Bus.BusHandlers
 {
     public class PostTransactionHandler : IHandleMessages<PostTransaction>
     {

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Domain", "Ba
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Contracts", "BankingExample.Contracts\BankingExample.Contracts.csproj", "{40D52DB1-B9AE-46F1-A8EC-64FA08854E01}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Bus", "BankingExample.Bus\BankingExample.Bus.csproj", "{95A70D85-118A-472A-87AC-0AADFBDE7523}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,18 @@ Global
 		{40D52DB1-B9AE-46F1-A8EC-64FA08854E01}.Release|x64.Build.0 = Release|Any CPU
 		{40D52DB1-B9AE-46F1-A8EC-64FA08854E01}.Release|x86.ActiveCfg = Release|Any CPU
 		{40D52DB1-B9AE-46F1-A8EC-64FA08854E01}.Release|x86.Build.0 = Release|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Debug|x64.Build.0 = Debug|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Debug|x86.Build.0 = Debug|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Release|x64.ActiveCfg = Release|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Release|x64.Build.0 = Release|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Release|x86.ActiveCfg = Release|Any CPU
+		{95A70D85-118A-472A-87AC-0AADFBDE7523}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

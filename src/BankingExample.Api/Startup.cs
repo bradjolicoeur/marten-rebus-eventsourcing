@@ -1,6 +1,6 @@
-using BankingExample.Api.BusHandlers;
 using BankingExample.Api.Helpers;
 using BankingExample.Api.Middleware;
+using BankingExample.Bus.BusHandlers;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -11,7 +11,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Rebus.Config;
-using Rebus.Routing.TypeBased;
 using Rebus.ServiceProvider;
 
 namespace BankingExample.Api
