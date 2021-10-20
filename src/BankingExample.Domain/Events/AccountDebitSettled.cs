@@ -1,10 +1,10 @@
-﻿using BankingExample.Api.Projections;
+﻿using BankingExample.Domain.Projections;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BankingExample.Api.Events
+namespace BankingExample.Domain.Events
 {
     public class AccountDebitSettled : Transaction
     {

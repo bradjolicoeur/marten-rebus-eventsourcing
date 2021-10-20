@@ -1,20 +1,19 @@
-﻿using BankingExample.Api.Projections;
+﻿using BankingExample.Domain.Projections;
 
-namespace BankingExample.Api.Events
+namespace BankingExample.Domain.Events
 {
-    public class AccountDebited : Transaction
+    public class AccountCredited : Transaction
     {
         public override void Apply(Account account)
         {
-            account.AvailableBalance -= Amount;
-            //account.Balance -= Amount;
+            account.Balance += Amount;
             account.Pending += Amount;
         }
 
 
-        public AccountCredited ToCredit()
+        public AccountDebited ToDebit()
         {
-            return new AccountCredited
+            return new AccountDebited
             {
                 Amount = Amount,
                 To = From,
@@ -25,7 +24,7 @@ namespace BankingExample.Api.Events
 
         public override string ToString()
         {
-            return $"{Time} Debited {Amount.ToString("C")} to {To}";
+            return $"{Time} Credited {Amount.ToString("C")} From {From}";
         }
     }
 }

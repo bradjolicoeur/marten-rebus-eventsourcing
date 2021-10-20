@@ -1,6 +1,6 @@
 ﻿using BankingExample.Api.Helpers;
 using BankingExample.Api.Interfaces;
-using BankingExample.Api.Projections;
+using BankingExample.Domain.Projections;
 using Marten;
 using Marten.Linq;
 using MediatR;

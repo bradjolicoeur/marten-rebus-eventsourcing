@@ -1,6 +1,6 @@
 ﻿using BankingExample.Api.Contracts.Response;
 using BankingExample.Api.Handlers;
-using BankingExample.Api.Projections;
+using BankingExample.Domain.Projections;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

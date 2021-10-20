@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BankingExample.Api.Contracts.Commands;
-using BankingExample.Api.Events;
-using BankingExample.Api.Projections;
+using BankingExample.Domain.Events;
+using BankingExample.Domain.Projections;
 using Marten;
 using MediatR;
 using Rebus.Bus;

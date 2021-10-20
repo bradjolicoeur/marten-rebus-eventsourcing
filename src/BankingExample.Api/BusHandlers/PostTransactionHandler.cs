@@ -1,7 +1,7 @@
 ﻿using BankingExample.Api.Contracts.Commands;
-using BankingExample.Api.Events;
+using BankingExample.Domain.Events;
 using BankingExample.Api.Models;
-using BankingExample.Api.Projections;
+using BankingExample.Domain.Projections;
 using Marten;
 using Rebus.Handlers;
 using Rebus.Messages;

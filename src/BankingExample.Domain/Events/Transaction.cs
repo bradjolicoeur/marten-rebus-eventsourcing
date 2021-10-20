@@ -1,7 +1,7 @@
-﻿using BankingExample.Api.Projections;
+﻿using BankingExample.Domain.Projections;
 using System;
 
-namespace BankingExample.Api.Events
+namespace BankingExample.Domain.Events
 {
     public abstract class Transaction
     {

@@ -1,5 +1,5 @@
 ﻿using BankingExample.Api.Interfaces;
-using BankingExample.Api.Projections;
+using BankingExample.Domain.Projections;
 using Marten;
 using MediatR;
 using System;

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using AutoMapper;
-using BankingExample.Api.Events;
+using BankingExample.Domain.Events;
 using Marten;
 using MediatR;
 

@@ -1,7 +1,7 @@
-﻿using BankingExample.Api.Events;
+﻿using BankingExample.Domain.Events;
 using System;
 
-namespace BankingExample.Api.Projections
+namespace BankingExample.Domain.Projections
 {
     public class Account
     {

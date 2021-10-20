@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BankingExample.Api.Events
+namespace BankingExample.Domain.Events
 {
     public class AccountCreated
     {

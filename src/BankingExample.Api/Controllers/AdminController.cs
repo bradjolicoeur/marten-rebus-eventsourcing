@@ -1,5 +1,5 @@
 ﻿using BankingExample.Api.Contracts.Response;
-using BankingExample.Api.Projections;
+using BankingExample.Domain.Projections;
 using Marten;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
