@@ -5,15 +5,17 @@ VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Api", "BankingExample.Api\BankingExample.Api.csproj", "{F28D00F7-5813-4015-A1B7-0BC2087D05AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Domain", "BankingExample.Domain\BankingExample.Domain.csproj", "{3BD8CBE2-FC2B-4004-A70F-121059F173C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Domain", "BankingExample.Domain\BankingExample.Domain.csproj", "{3BD8CBE2-FC2B-4004-A70F-121059F173C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Contracts", "BankingExample.Contracts\BankingExample.Contracts.csproj", "{40D52DB1-B9AE-46F1-A8EC-64FA08854E01}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Contracts", "BankingExample.Contracts\BankingExample.Contracts.csproj", "{40D52DB1-B9AE-46F1-A8EC-64FA08854E01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Bus", "BankingExample.Bus\BankingExample.Bus.csproj", "{95A70D85-118A-472A-87AC-0AADFBDE7523}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Bus", "BankingExample.Bus\BankingExample.Bus.csproj", "{95A70D85-118A-472A-87AC-0AADFBDE7523}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Handlers", "BankingExample.Handlers\BankingExample.Handlers.csproj", "{A31ED6FC-1027-4358-AF36-53A5CD61E9C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Handlers", "BankingExample.Handlers\BankingExample.Handlers.csproj", "{A31ED6FC-1027-4358-AF36-53A5CD61E9C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Api.Contracts", "BankingExample.Api.Contracts\BankingExample.Api.Contracts.csproj", "{5FD22920-FD06-41CD-AA36-6AF27541888A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Api.Contracts", "BankingExample.Api.Contracts\BankingExample.Api.Contracts.csproj", "{5FD22920-FD06-41CD-AA36-6AF27541888A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Api.Tests", "BankingExample.Api.Tests\BankingExample.Api.Tests.csproj", "{8D572931-FBD5-4204-8CBF-63B40F78642B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +99,18 @@ Global
 		{5FD22920-FD06-41CD-AA36-6AF27541888A}.Release|x64.Build.0 = Release|Any CPU
 		{5FD22920-FD06-41CD-AA36-6AF27541888A}.Release|x86.ActiveCfg = Release|Any CPU
 		{5FD22920-FD06-41CD-AA36-6AF27541888A}.Release|x86.Build.0 = Release|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Debug|x64.Build.0 = Debug|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Debug|x86.Build.0 = Debug|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|x64.ActiveCfg = Release|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|x64.Build.0 = Release|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|x86.ActiveCfg = Release|Any CPU
+		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

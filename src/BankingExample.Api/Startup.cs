@@ -72,7 +72,7 @@ namespace BankingExample.Api
             //or optionally act on the bus
             //app.ApplicationServices.UseRebus(async bus => await bus.Subscribe<ICompletedMakePayment>());
 
-            app.UseHttpsRedirection();
+           
             app.UseHealthChecks("/health");
 
             app.UseRouting();
