@@ -1,5 +1,4 @@
 ﻿
-using BankingExample.Api.Factories;
 using BankingExample.Domain.Projections;
 using Marten;
 using Marten.Events.Daemon.Resiliency;
@@ -39,8 +38,7 @@ namespace BankingExample.Api.Helpers
 
                 opts.Projections.SelfAggregate<Account>(ProjectionLifecycle.Inline); 
 
-            })
-               .BuildSessionsWith<CustomSessionFactory>();
+            });
 
 
             return services;
