@@ -17,8 +17,8 @@ namespace BankingExample.Api.Helpers
 
             services.AddMarten(opts =>
             {
-                var connection = configuration["BLASTCMS_DB"];
-                opts.Connection(configuration["BLASTCMS_DB"]);
+                var connection = configuration["MRBES_DB"];
+                opts.Connection(connection);
 
                 opts.AutoCreateSchemaObjects = AutoCreate.All;
 

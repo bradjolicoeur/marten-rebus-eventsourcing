@@ -15,7 +15,9 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "BLASTCMS_DB": "User ID=merbes_user;Password=not_magical_scary;Host=localhost;Port=5432;Database=merbes_database;"
+        "MRBES_DB": "User ID=merbes_user;Password=not_magical_scary;Host=localhost;Port=5432;Database=merbes_database;",
+        "RABBITMQ": "amqp://rabbitmq:rabbitmq@localhost",
+        "INPUT_QUEUE": "bankingexample.webapp"
       },
       "dotnetRunMessages": "true",
       "applicationUrl": "https://localhost:5001;http://localhost:5000"

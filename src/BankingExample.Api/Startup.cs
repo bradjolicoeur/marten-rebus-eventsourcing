@@ -50,8 +50,10 @@ namespace BankingExample.Api
             services.AutoRegisterHandlersFromAssemblyOf<PostTransactionHandler>();
 
             // Configure and register Rebus
+            var rabbitMqConnection = Configuration["RABBITMQ"];
+            var inboundQueueName = Configuration["INPUT_QUEUE"];
             services.AddRebus(configure => configure
-                .Transport(t => t.UseRabbitMq("amqp://rabbitmq:rabbitmq@localhost", "bankingexample.webapp"))
+                .Transport(t => t.UseRabbitMq(rabbitMqConnection, inboundQueueName))
                 //.Routing(r => r.TypeBased().MapAssemblyOf<Startup>("example.paymentsaga"))
                 );
 
