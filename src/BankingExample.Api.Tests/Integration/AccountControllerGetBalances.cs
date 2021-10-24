@@ -1,4 +1,5 @@
 ﻿using Alba;
+using BankingExample.ApiClient;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,19 @@ namespace BankingExample.Api.Tests.Integration
                 _.Get.Url("/api/account/balances");
                 _.StatusCodeShouldBeOk();
             });
+        }
+
+        [Test]
+        public async Task get_balances_withclient_ok()
+        {
+            using (var httpClient = Application.AlbaHost.Server.CreateClient())
+            {
+                var client = new swagger_banking_exampleClient(httpClient.BaseAddress.ToString(), httpClient);
+
+                var result = await client.Balances2Async(null, null, null, null);
+
+                Assert.IsNotNull(result);
+            }
         }
     }
 }
