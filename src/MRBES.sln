@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Handlers", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Api.Contracts", "BankingExample.Api.Contracts\BankingExample.Api.Contracts.csproj", "{5FD22920-FD06-41CD-AA36-6AF27541888A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Api.Tests", "BankingExample.Api.Tests\BankingExample.Api.Tests.csproj", "{8D572931-FBD5-4204-8CBF-63B40F78642B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Api.Tests", "BankingExample.Api.Tests\BankingExample.Api.Tests.csproj", "{8D572931-FBD5-4204-8CBF-63B40F78642B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Api.SpecflowTests", "BankingExample.Api.SpecflowTests\BankingExample.Api.SpecflowTests.csproj", "{36975315-FB64-438A-925B-DE9312BC07AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +113,18 @@ Global
 		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|x64.Build.0 = Release|Any CPU
 		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|x86.ActiveCfg = Release|Any CPU
 		{8D572931-FBD5-4204-8CBF-63B40F78642B}.Release|x86.Build.0 = Release|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Debug|x64.Build.0 = Debug|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Debug|x86.Build.0 = Debug|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|x64.ActiveCfg = Release|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|x64.Build.0 = Release|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|x86.ActiveCfg = Release|Any CPU
+		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
