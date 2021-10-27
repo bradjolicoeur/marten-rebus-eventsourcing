@@ -6,6 +6,7 @@ using Marten;
 using MediatR;
 using Rebus.Bus;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
@@ -78,6 +79,10 @@ namespace BankingExample.Handlers
                 using (var session = _store.OpenSession())
                 {
                     var account = session.Load<Account>(request.From);
+                    if (account == null)
+                        throw new KeyNotFoundException($"account {request.From} not found");
+
+                    PostTransaction command = null;
 
                     var spend = new AccountDebited
                     {
@@ -92,6 +97,7 @@ namespace BankingExample.Handlers
                         session.Events.Append(spend.From, spend);
                         session.Events.Append(spend.To, spend.ToCredit());
                         result = new TransactionResults(true, $"{request.Description} - Pending");
+                        command = _mapper.Map<PostTransaction>(request);
                     }
                     else
                     {
@@ -105,11 +111,11 @@ namespace BankingExample.Handlers
                     // commit these changes
                     session.SaveChanges();
 
-                    var command = _mapper.Map<PostTransaction>(request);
-                    await _bus.SendLocal(command);
+                    if (command != null)
+                        await _bus.SendLocal(command);
 
                 }
-                
+
                 return result;
             }
         }

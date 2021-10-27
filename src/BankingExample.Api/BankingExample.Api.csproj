@@ -22,6 +22,7 @@
     <PackageReference Include="Rebus.RabbitMq" Version="7.3.0" />
     <PackageReference Include="Rebus.ServiceProvider" Version="6.4.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -29,6 +30,7 @@
     <ProjectReference Include="..\BankingExample.Bus\BankingExample.Bus.csproj" />
     <ProjectReference Include="..\BankingExample.Contracts\BankingExample.Contracts.csproj" />
     <ProjectReference Include="..\BankingExample.Domain\BankingExample.Domain.csproj" />
+    <ProjectReference Include="..\BankingExample.Handlers\BankingExample.Handlers.csproj" />
   </ItemGroup>
 
 </Project>

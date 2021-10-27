@@ -247,8 +247,7 @@
             "name": "Search",
             "in": "query",
             "schema": {
-              "type": "string",
-              "nullable": true
+              "type": "string"
             }
           }
         ],
@@ -457,120 +456,6 @@
   },
   "components": {
     "schemas": {
-      "CreateAccount": {
-        "required": [
-          "owner"
-        ],
-        "type": "object",
-        "properties": {
-          "owner": {
-            "type": "string"
-          },
-          "accountId": {
-            "type": "string",
-            "format": "uuid",
-            "readOnly": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "startingBalance": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
-      "CreateAccountResponse": {
-        "type": "object",
-        "properties": {
-          "accountId": {
-            "type": "string",
-            "format": "uuid",
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "BadRequestResponse": {
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "AccountTransaction": {
-        "required": [
-          "amount",
-          "description",
-          "from",
-          "to"
-        ],
-        "type": "object",
-        "properties": {
-          "to": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "from": {
-            "type": "string",
-            "format": "uuid"
-          },
-          "description": {
-            "maxLength": 250,
-            "type": "string"
-          },
-          "time": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "amount": {
-            "maximum": 2147483647,
-            "minimum": 1,
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
-      "TransactionResults": {
-        "type": "object",
-        "properties": {
-          "success": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "message": {
-            "type": "string",
-            "nullable": true,
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "QueryAccountBalance": {
-        "required": [
-          "ids"
-        ],
-        "type": "object",
-        "properties": {
-          "ids": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "format": "uuid"
-            }
-          }
-        },
-        "additionalProperties": false
-      },
       "Account": {
         "type": "object",
         "properties": {
@@ -613,13 +498,146 @@
             "items": {
               "$ref": "#/components/schemas/Account"
             },
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           },
           "count": {
             "type": "integer",
-            "format": "int64",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountLedger": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EventData"
+            },
+            "nullable": true
+          },
+          "count": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AccountTransaction": {
+        "required": [
+          "amount",
+          "description",
+          "from",
+          "to"
+        ],
+        "type": "object",
+        "properties": {
+          "to": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "from": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": {
+            "maxLength": 250,
+            "type": "string"
+          },
+          "time": {
+            "type": "string",
+            "format": "date-time",
             "readOnly": true
+          },
+          "amount": {
+            "maximum": 2147483647,
+            "minimum": 1,
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BadRequestResponse": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateAccount": {
+        "required": [
+          "owner"
+        ],
+        "type": "object",
+        "properties": {
+          "owner": {
+            "type": "string"
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "startingBalance": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CreateAccountResponse": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EventData": {
+        "type": "object",
+        "properties": {
+          "eventTypeName": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "nullable": true
+          },
+          "version": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "QueryAccountBalance": {
+        "required": [
+          "ids"
+        ],
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            }
           }
         },
         "additionalProperties": false
@@ -632,35 +650,28 @@
             "items": {
               "$ref": "#/components/schemas/Account"
             },
-            "nullable": true,
-            "readOnly": true
+            "nullable": true
           },
           "count": {
             "type": "integer",
-            "format": "int64",
-            "readOnly": true
+            "format": "int64"
           },
           "page": {
             "type": "integer",
-            "format": "int32",
-            "readOnly": true
+            "format": "int32"
           }
         },
         "additionalProperties": false
       },
-      "AccountLedger": {
+      "TransactionResults": {
         "type": "object",
         "properties": {
-          "data": {
-            "type": "array",
-            "items": { },
-            "nullable": true,
-            "readOnly": true
+          "success": {
+            "type": "boolean"
           },
-          "count": {
-            "type": "integer",
-            "format": "int64",
-            "readOnly": true
+          "message": {
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

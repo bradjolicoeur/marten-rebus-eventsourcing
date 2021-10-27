@@ -1,6 +1,7 @@
 using BankingExample.Api.Helpers;
 using BankingExample.Api.Middleware;
 using BankingExample.Bus.BusHandlers;
+using BankingExample.Handlers;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -38,12 +39,13 @@ namespace BankingExample.Api
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BankingExample.Api", Version = "v1" });
+                c.EnableAnnotations(enableAnnotationsForInheritance: true, enableAnnotationsForPolymorphism: true);
             });
 
             services.AddMartenConfig(Configuration);
 
-            services.AddMediatR(typeof(Startup).Assembly);
-            services.AddAutoMapper(typeof(Startup));
+            services.AddMediatR(typeof(AcceptTransactionHandler).Assembly);
+            services.AddAutoMapper(typeof(AcceptTransactionHandler));
             services.AddValidatorsFromAssemblyContaining<Startup>();
 
             // Register Rebus handlers 

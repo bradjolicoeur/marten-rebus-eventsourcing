@@ -63,7 +63,14 @@ namespace BankingExample.Api.SpecflowTests.Steps
             result.Success.Should().Be(true);
 
         }
-        
+
+        [When(@"we wait (.*) seconds for the transaction to process")]
+        public async Task WhenWeWaitSecondsForTheTransactionToProcess(int p0)
+        {
+            await Task.Delay(1000*p0);
+        }
+
+
         [Then(@"the balance for Tim will be (.*)")]
         public async Task ThenTheBalanceForTimWillBe(double p0)
         {

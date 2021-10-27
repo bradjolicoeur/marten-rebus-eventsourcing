@@ -23,14 +23,23 @@ namespace BankingExample.Handlers
 
         public class AccountLedger 
         {
-            public AccountLedger(IEnumerable<object> data, long count)
+            public AccountLedger(IEnumerable<EventData> data, long count)
             {
                 Data = data;
                 Count = count;
             }
 
-            public IEnumerable<object> Data { get; }
+            public IEnumerable<EventData> Data { get; }
             public long Count { get; }
+
+        }
+
+        public class EventData
+        {
+            public string EventTypeName { get; set; }
+            public object Data { get; set; }
+            public long Version { get; set; }
+            public DateTimeOffset Timestamp { get; set; }
         }
 
         public class Handler : IRequestHandler<QueryAccountLedger, AccountLedger>
@@ -48,7 +57,12 @@ namespace BankingExample.Handlers
                 {
                     var stream = await session.Events.FetchStreamAsync(request.Id, 0);
 
-                    return new AccountLedger(stream.Select(o => new { o.EventTypeName, o.Data, o.Version, o.Timestamp}), stream.Count);
+                    return new AccountLedger(stream.Select(o => new EventData 
+                        { EventTypeName = o.EventTypeName, 
+                            Data = o.Data, 
+                            Version = o.Version, 
+                            Timestamp = o.Timestamp
+                        }), stream.Count);
                 }
             }
         }
