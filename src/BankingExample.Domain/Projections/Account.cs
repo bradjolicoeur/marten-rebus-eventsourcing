@@ -1,6 +1,5 @@
 ﻿using BankingExample.Domain.Events;
 using System;
-using Marten.Events.Aggregation;
 
 namespace BankingExample.Domain.Projections
 {

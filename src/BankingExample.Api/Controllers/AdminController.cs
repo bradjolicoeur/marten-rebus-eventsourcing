@@ -1,10 +1,8 @@
 ﻿using BankingExample.Contracts.Response;
-using BankingExample.Domain.Projections;
 using Marten;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace BankingExample.Api.Controllers

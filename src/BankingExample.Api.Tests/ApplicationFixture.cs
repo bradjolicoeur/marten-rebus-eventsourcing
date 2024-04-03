@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using Alba;
+﻿using Alba;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using NUnit.Framework;
 using ThrowawayDb.Postgres;
 
 namespace BankingExample.Api.Tests

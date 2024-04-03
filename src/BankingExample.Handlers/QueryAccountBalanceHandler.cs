@@ -1,11 +1,9 @@
-﻿using BankingExample.Api.Contracts.Interfaces;
-using BankingExample.Domain.Projections;
+﻿using BankingExample.Domain.Projections;
 using Marten;
 using MediatR;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 

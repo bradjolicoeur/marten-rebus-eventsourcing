@@ -1,10 +1,6 @@
 ﻿using BankingExample.Domain.Events;
 using Marten.Events.Aggregation;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BankingExample.Domain.Projections
 {

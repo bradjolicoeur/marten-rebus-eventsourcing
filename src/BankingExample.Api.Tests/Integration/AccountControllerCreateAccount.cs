@@ -1,12 +1,5 @@
 ﻿using Alba;
 using BankingExample.ApiClient;
-using NUnit.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using VerifyTests;
 
 namespace BankingExample.Api.Tests.Integration
 {

@@ -1,6 +1,5 @@
 ﻿using BankingExample.Api.SpecflowTests.Hooks;
 using BankingExample.ApiClient;
-using BankingExample.Domain.Events;
 using FluentAssertions;
 using System;
 using System.Linq;

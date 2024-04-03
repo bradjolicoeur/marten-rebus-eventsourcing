@@ -1,11 +1,8 @@
 ﻿using BankingExample.Contracts.Response;
 using BankingExample.Api.Handlers;
-using BankingExample.Domain.Projections;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using BankingExample.Handlers;
 

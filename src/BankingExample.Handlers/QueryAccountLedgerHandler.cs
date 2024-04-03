@@ -1,6 +1,4 @@
-﻿using BankingExample.Api.Contracts.Interfaces;
-using Marten;
-using Marten.Events;
+﻿using Marten;
 using MediatR;
 using System;
 using System.Collections.Generic;
