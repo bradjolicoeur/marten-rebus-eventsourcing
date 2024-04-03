@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using BankingExample.Api.Helpers;
 using BankingExample.Api.Middleware;
 using BankingExample.Bus.BusHandlers;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Rebus.Config;
 using Rebus.ServiceProvider;
+using System;
 
 namespace BankingExample.Api
 {
@@ -44,8 +46,8 @@ namespace BankingExample.Api
 
             services.AddMartenConfig(Configuration);
 
-            services.AddMediatR(typeof(AcceptTransactionHandler).Assembly);
-            services.AddAutoMapper(typeof(AcceptTransactionHandler));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
+            services.AddAutoMapper(typeof(AcceptTransactionHandler).Assembly);
             services.AddValidatorsFromAssemblyContaining<Startup>();
 
             // Register Rebus handlers 
@@ -71,10 +73,6 @@ namespace BankingExample.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "BankingExample.Api v1"));
             }
-
-            app.ApplicationServices.UseRebus();
-            //or optionally act on the bus
-            //app.ApplicationServices.UseRebus(async bus => await bus.Subscribe<ICompletedMakePayment>());
 
            
             app.UseHealthChecks("/health");

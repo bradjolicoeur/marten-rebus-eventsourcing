@@ -3,6 +3,7 @@ using BankingExample.Domain.Projections;
 using Marten;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -38,12 +39,14 @@ namespace BankingExample.Api.Controllers
         public async Task<ActionResult<string>> RebuildAccount()
         {
 
-            // Deletes all the documents stored in a Marten database
-            using var daemon = _store.BuildProjectionDaemon();
+            throw new NotImplementedException();
 
-            await daemon.RebuildProjection<Account>(new CancellationToken());
+            //// Deletes all the documents stored in a Marten database
+            //using var daemon = _store.BuildProjectionDaemon();
 
-            return Ok("Rebuild Account Completed");
+            //await daemon.RebuildProjection<Account>(new CancellationToken());
+
+            //return Ok("Rebuild Account Completed");
 
         }
     }

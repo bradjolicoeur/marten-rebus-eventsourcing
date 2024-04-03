@@ -1,11 +1,11 @@
 ﻿
 using BankingExample.Domain.Projections;
 using Marten;
-using Marten.Events.Daemon.Resiliency;
 using Marten.Events.Projections;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Weasel.Postgresql;
+using Weasel.Core;
+
 
 namespace BankingExample.Api.Helpers
 {
@@ -22,21 +22,7 @@ namespace BankingExample.Api.Helpers
 
                 opts.AutoCreateSchemaObjects = AutoCreate.All;
 
-                // Turn on the async daemon in "Solo" mode
-                //opts.Projections.AsyncMode = DaemonMode.Solo;
-
-                //Namespace Migration https://martendb.io/events/versioning.html#namespace-migration
-                opts.Events.AddEventTypes(new[] 
-                { 
-                    typeof(BankingExample.Domain.Events.AccountCreated),
-                    typeof(BankingExample.Domain.Events.AccountCredited),
-                    typeof(BankingExample.Domain.Events.AccountCreditSettled),
-                    typeof(BankingExample.Domain.Events.AccountDebited),
-                    typeof(BankingExample.Domain.Events.AccountDebitSettled),
-                    typeof(BankingExample.Domain.Events.InvalidOperationAttempted),
-                });
-
-                opts.Projections.SelfAggregate<Account>(ProjectionLifecycle.Inline); 
+                opts.Projections.Add<AccountProjection>(ProjectionLifecycle.Inline); 
 
             });
 

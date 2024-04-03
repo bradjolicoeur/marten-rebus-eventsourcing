@@ -30,7 +30,7 @@ namespace BankingExample.Api.Tests.Integration
 
                 var result = await client.Balances2Async(null, null, null, null);
 
-                Assert.IsNotNull(result);
+                await Verifier.Verify(result);
             }
         }
     }

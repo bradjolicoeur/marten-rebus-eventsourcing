@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VerifyTests;
 
 namespace BankingExample.Api.Tests.Integration
 {
@@ -37,7 +38,7 @@ namespace BankingExample.Api.Tests.Integration
 
                 var result = await client.CreateAsync(new CreateAccount { Owner = "ClientTest", StartingBalance = 500 });
 
-                Assert.IsNotNull(result);
+                await Verifier.Verify(result);
             }
         }
     }

@@ -4,8 +4,8 @@ accept: text/plain
 Content-Type: application/json
 
 {
-  "owner": "Tim",
-  "startingBalance": 200
+  "owner": "Sparks",
+  "startingBalance": 500
 }
 
 # {
