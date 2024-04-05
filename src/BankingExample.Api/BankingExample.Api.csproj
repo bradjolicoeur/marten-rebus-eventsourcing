@@ -21,6 +21,9 @@
     <PackageReference Include="Rebus.ServiceProvider" Version="10.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
+    <PackageReference Include="WolverineFx" Version="2.1.2" />
+    <PackageReference Include="WolverineFx.Http" Version="2.1.2" />
+    <PackageReference Include="WolverineFx.Marten" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,5 +33,10 @@
     <ProjectReference Include="..\BankingExample.Domain\BankingExample.Domain.csproj" />
     <ProjectReference Include="..\BankingExample.Handlers\BankingExample.Handlers.csproj" />
   </ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="BankingExample.Api.Tests"/>
+		<InternalsVisibleTo Include="BankingExample.Api.SpecflowTests"/>
+	</ItemGroup>
 
 </Project>

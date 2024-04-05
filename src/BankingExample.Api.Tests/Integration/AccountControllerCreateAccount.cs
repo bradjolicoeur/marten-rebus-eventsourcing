@@ -3,36 +3,39 @@ using BankingExample.ApiClient;
 
 namespace BankingExample.Api.Tests.Integration
 {
-    public class AccountControllerCreateAccount
+    public class AccountControllerCreateAccount : IClassFixture<WebAppFixture>
     {
-        [Test]
+
+        public AccountControllerCreateAccount(WebAppFixture app)
+        {
+            _host = app.AlbaHost;
+        }
+
+        private readonly IAlbaHost _host;
+
+        [Fact]
         public Task create_account_ok()
         {
-            return Application.AlbaHost.Scenario(_ =>
+            return _host.Scenario(_ =>
             {
-                
-                
+
                 _.Post
                     .Json(new { Owner = "TestMe", StartingBalance = 200 })
                     .ToUrl("/api/account/create");
                 _.StatusCodeShouldBeOk();
             });
 
-            
-            
         }
 
-        [Test]
+        [Fact]
         public async Task create_account_withclient_ok()
         {
-            using (var httpClient = Application.AlbaHost.Server.CreateClient())
-            {
-                var client = new swagger_banking_exampleClient(httpClient.BaseAddress.ToString(), httpClient);
+            using var httpClient = _host.Server.CreateClient();
+            var client = new swagger_banking_exampleClient(httpClient.BaseAddress.ToString(), httpClient);
 
-                var result = await client.CreateAsync(new CreateAccount { Owner = "ClientTest", StartingBalance = 500 });
+            var result = await client.CreateAsync(new CreateAccount { Owner = "ClientTest", StartingBalance = 500 });
 
-                await Verifier.Verify(result);
-            }
+            await Verifier.Verify(result);
         }
     }
 }

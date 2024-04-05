@@ -12,10 +12,10 @@ namespace BankingExample.Api.Helpers
     public static class ConfigureMarten
     {
 
-        public static IServiceCollection AddMartenConfig(this IServiceCollection services, IConfiguration configuration)
+        public static MartenServiceCollectionExtensions.MartenConfigurationExpression AddMartenConfig(this IServiceCollection services, IConfiguration configuration)
         {
 
-            services.AddMarten(opts =>
+            return services.AddMarten(opts =>
             {
                 var connection = configuration["MRBES_DB"];
                 opts.Connection(connection);
@@ -25,9 +25,6 @@ namespace BankingExample.Api.Helpers
                 opts.Projections.Add<AccountProjection>(ProjectionLifecycle.Inline); 
 
             });
-
-
-            return services;
         }
 
        

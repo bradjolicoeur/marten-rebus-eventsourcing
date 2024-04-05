@@ -3,29 +3,34 @@ using BankingExample.ApiClient;
 
 namespace BankingExample.Api.Tests.Integration
 {
-    public class AccountControllerGetBalances
+    public class AccountControllerGetBalances : IClassFixture<WebAppFixture>
     {
-        [Test]
+        public AccountControllerGetBalances(WebAppFixture app)
+        {
+            _host = app.AlbaHost;
+        }
+
+        private readonly IAlbaHost _host;
+
+        [Fact]
         public Task get_balance_ok()
         {
-            return Application.AlbaHost.Scenario(_ =>
+            return _host.Scenario(_ =>
             {
                 _.Get.Url("/api/account/balances");
                 _.StatusCodeShouldBeOk();
             });
         }
 
-        [Test]
+        [Fact]
         public async Task get_balances_withclient_ok()
         {
-            using (var httpClient = Application.AlbaHost.Server.CreateClient())
-            {
-                var client = new swagger_banking_exampleClient(httpClient.BaseAddress.ToString(), httpClient);
+            using var httpClient = _host.Server.CreateClient();
+            var client = new swagger_banking_exampleClient(httpClient.BaseAddress.ToString(), httpClient);
 
-                var result = await client.Balances2Async(null, null, null, null);
+            var result = await client.Balances2Async(null, null, null, null);
 
-                await Verifier.Verify(result);
-            }
+            await Verifier.Verify(result);
         }
     }
 }

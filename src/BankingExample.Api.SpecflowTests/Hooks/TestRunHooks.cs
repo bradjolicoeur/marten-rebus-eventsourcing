@@ -5,6 +5,7 @@ using TechTalk.SpecFlow;
 using ThrowawayDb.Postgres;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
 
 namespace BankingExample.Api.SpecflowTests.Hooks
 {
@@ -13,12 +14,12 @@ namespace BankingExample.Api.SpecflowTests.Hooks
     {
         // Make this lazy so you don't build it out
         // when you don't need it.
-        private static Lazy<IAlbaHost> _host;
-        public static IAlbaHost AlbaHost => _host.Value;
+        private static IAlbaHost _host;
+        public static IAlbaHost AlbaHost => _host;
         public static ThrowawayDatabase Database;
 
         [BeforeTestRun]
-        public static void SetupHost()
+        public static async Task SetupHost()
         {
             var testHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
             var rabbitMQ = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "amqp://rabbitmq:rabbitmq@localhost";
@@ -27,29 +28,22 @@ namespace BankingExample.Api.SpecflowTests.Hooks
             //Create a temporary database for testing
             Database = ThrowawayDatabase.Create(username: "merbes_user", password: "not_magical_scary", host: testHost);
 
-            //Add test configuration into IConfiguration
-            var testConfiguration = new Dictionary<string, string>
-            {
-                {"MRBES_DB", Database.ConnectionString },
-                {"RABBITMQ", rabbitMQ  },
-                {"INPUT_QUEUE", "bankingexampletest.webapp"},
-            };
-
-            _host = new Lazy<IAlbaHost>(() => Program
-                .CreateHostBuilder(Array.Empty<string>())
-                .ConfigureAppConfiguration(c =>
+            _host =  await Alba.AlbaHost.For<global::Program>(builder =>
                 {
-                    c.AddInMemoryCollection(testConfiguration);
-                })
-                .StartAlba());
+                    builder.UseSetting("MRBES_DB", Database.ConnectionString);
+                    builder.UseSetting("RABBITMQ", rabbitMQ);
+                    builder.UseSetting("INPUT_QUEUE", "bankingexampletest.webapp");
+                });
+
+
         }
 
         [AfterTestRun]
         public static void TeardownHost()
         {
-            if (_host.IsValueCreated)
+            if (_host != null)
             {
-                _host.Value.Dispose();
+                _host.Dispose();
             }
 
             if (Database != null)
