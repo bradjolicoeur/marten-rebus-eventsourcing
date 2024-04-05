@@ -1,4 +1,5 @@
 ﻿using Alba;
+using Oakton;
 using ThrowawayDb.Postgres;
 using Wolverine;
 
@@ -15,6 +16,8 @@ namespace BankingExample.Api.Tests
 
             //Create a temporary database for testing
             Database = ThrowawayDatabase.Create(username: "merbes_user", password: "not_magical_scary", host: testHost);
+
+            OaktonEnvironment.AutoStartHost = true;
 
             AlbaHost = await Alba.AlbaHost.For<global::Program>(builder =>
             {

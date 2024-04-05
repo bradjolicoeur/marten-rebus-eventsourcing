@@ -6,6 +6,7 @@ using ThrowawayDb.Postgres;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System.Threading.Tasks;
+using Oakton;
 
 namespace BankingExample.Api.SpecflowTests.Hooks
 {
@@ -27,6 +28,8 @@ namespace BankingExample.Api.SpecflowTests.Hooks
 
             //Create a temporary database for testing
             Database = ThrowawayDatabase.Create(username: "merbes_user", password: "not_magical_scary", host: testHost);
+
+            OaktonEnvironment.AutoStartHost = true;
 
             _host =  await Alba.AlbaHost.For<global::Program>(builder =>
                 {
