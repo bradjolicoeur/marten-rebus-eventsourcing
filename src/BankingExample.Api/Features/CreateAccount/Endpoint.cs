@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Http;
 
 namespace BankingExample.Api.Features.CreateAccount
 {
-    public class CreateNewAccount
+    public class CreateAccount
     {
-        public CreateNewAccount()
+        public CreateAccount()
         {
             AccountId = Guid.NewGuid();
             CreatedAt = DateTime.UtcNow;
@@ -39,7 +39,7 @@ namespace BankingExample.Api.Features.CreateAccount
     {
         [Tags("Account")]
         [WolverinePost("api/account/create")]
-        public static CreateAccountResponse Post(CreateNewAccount command, IDocumentSession session)
+        public static CreateAccountResponse Post(CreateAccount command, IDocumentSession session)
         {
             var account = new AccountCreated
             {
