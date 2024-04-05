@@ -1,6 +1,7 @@
 ﻿using Alba;
 using Oakton;
-using ThrowawayDb.Postgres;
+using Testcontainers.PostgreSql;
+using Testcontainers.RabbitMq;
 using Wolverine;
 
 namespace BankingExample.Api.Tests
@@ -8,14 +9,14 @@ namespace BankingExample.Api.Tests
     public class WebAppFixture : IAsyncLifetime
     {
         public IAlbaHost AlbaHost = null!;
-        public static ThrowawayDatabase Database;
+        private readonly PostgreSqlContainer _postgreSqlContainer = new PostgreSqlBuilder().Build();
+        private readonly RabbitMqContainer _rabbitMqContainer = new RabbitMqBuilder().Build();
         public async Task InitializeAsync()
         {
-            var testHost = Environment.GetEnvironmentVariable("DB_HOST") ?? "localhost";
-            var rabbitMQ = Environment.GetEnvironmentVariable("RABBITMQ_HOST") ?? "amqp://rabbitmq:rabbitmq@localhost";
 
             //Create a temporary database for testing
-            Database = ThrowawayDatabase.Create(username: "merbes_user", password: "not_magical_scary", host: testHost);
+            await _postgreSqlContainer.StartAsync();
+            await _rabbitMqContainer.StartAsync();
 
             OaktonEnvironment.AutoStartHost = true;
 
@@ -28,8 +29,8 @@ namespace BankingExample.Api.Tests
                     services.DisableAllExternalWolverineTransports();
                 });
 
-                builder.UseSetting("MRBES_DB", Database.ConnectionString);
-                builder.UseSetting("RABBITMQ", rabbitMQ);
+                builder.UseSetting("MRBES_DB", _postgreSqlContainer.GetConnectionString());
+                builder.UseSetting("RABBITMQ", _rabbitMqContainer.GetConnectionString());
                 builder.UseSetting("INPUT_QUEUE", "bankingexampletest.webapp");
             });
         }
@@ -38,7 +39,8 @@ namespace BankingExample.Api.Tests
         {
             await AlbaHost.DisposeAsync();
 
-            Database?.Dispose();
+            await _postgreSqlContainer.DisposeAsync();
+            await _rabbitMqContainer.DisposeAsync();
         }
     }
 }

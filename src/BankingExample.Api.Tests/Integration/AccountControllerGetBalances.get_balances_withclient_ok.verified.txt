@@ -1,22 +1,3 @@
 ﻿{
-  Data: [
-    {
-      Id: Guid_1,
-      Owner: TestMe,
-      Balance: 200.0,
-      AvailableBalance: 200.0,
-      CreatedAt: DateTimeOffset_1,
-      UpdatedAt: DateTimeOffset_1
-    },
-    {
-      Id: Guid_2,
-      Owner: ClientTest,
-      Balance: 500.0,
-      AvailableBalance: 500.0,
-      CreatedAt: DateTimeOffset_2,
-      UpdatedAt: DateTimeOffset_2
-    }
-  ],
-  Count: 2,
   Page: 1
 }

@@ -37,23 +37,23 @@ namespace BankingExample.Api.Features.CreateAccount
 
     public static class Endpoint
     {
-        [Tags("Account")]
-        [WolverinePost("api/account/create")]
-        public static CreateAccountResponse Post(CreateAccount command, IDocumentSession session)
-        {
-            var account = new AccountCreated
-            {
-                Owner = command.Owner,
-                AccountId = command.AccountId,
-                StartingBalance = command.StartingBalance,
-            };
+        //[Tags("Account")]
+        //[WolverinePost("api/account/create")]
+        //public static CreateAccountResponse Post(CreateAccount command, IDocumentSession session)
+        //{
+        //    var account = new AccountCreated
+        //    {
+        //        Owner = command.Owner,
+        //        AccountId = command.AccountId,
+        //        StartingBalance = command.StartingBalance,
+        //    };
 
-            session.Events.StartStream(account.AccountId, account);
-            session.SaveChanges();
+        //    session.Events.StartStream(account.AccountId, account);
+        //    session.SaveChanges();
             
 
-            return new CreateAccountResponse(command.AccountId);
-        }
+        //    return new CreateAccountResponse(command.AccountId);
+        //}
 
 
     }

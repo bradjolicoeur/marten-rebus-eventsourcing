@@ -8,11 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="swagger-banking-example.json" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <OpenApiReference Include="swagger-banking-example.json" CodeGenerator="NSwagCSharp" Namespace="BankingExample.ApiClient" />
+    <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" Namespace="BankingExample.ApiClient" ClassName="Client">
+      <SourceUri>https://localhost:5001/swagger/v1/swagger.json</SourceUri>
+    </OpenApiReference>
   </ItemGroup>
 
   <ItemGroup>
@@ -27,13 +25,14 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Testcontainers.PostgreSql" Version="3.8.0" />
+    <PackageReference Include="Testcontainers.RabbitMq" Version="3.8.0" />
 	  <PackageReference Include="xunit" Version="2.7.0" />
 	  <PackageReference Include="xunit.runner.visualstudio" Version="2.5.7">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 	  </PackageReference>
 	<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
-    <PackageReference Include="ThrowawayDb.Postgres" Version="1.4.0" />
 	<PackageReference Include="Verify.Xunit" Version="23.6.0" />
   </ItemGroup>
 

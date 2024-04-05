@@ -26,9 +26,9 @@ namespace BankingExample.Api.Tests.Integration
         public async Task get_balances_withclient_ok()
         {
             using var httpClient = _host.Server.CreateClient();
-            var client = new swagger_banking_exampleClient(httpClient.BaseAddress.ToString(), httpClient);
+            var client = new Client(httpClient.BaseAddress.ToString(), httpClient);
 
-            var result = await client.Balances2Async(null, null, null, null);
+            var result = await client.BalancesGETAsync(null, null, null, null);
 
             await Verifier.Verify(result);
         }

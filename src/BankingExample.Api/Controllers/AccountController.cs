@@ -19,14 +19,14 @@ namespace BankingExample.Api.Controllers
             _mediator = mediator;
         }
 
-        //[HttpPost("create")]
-        //[ProducesResponseType(StatusCodes.Status200OK, Type= typeof(CreateAccountHandler.CreateAccountResponse))]
-        //[ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        //public async Task<ActionResult<CreateAccountHandler.CreateAccountResponse>> PostCreate(CreateAccountHandler.CreateAccount command)
-        //{
-        //    var result = await _mediator.Send(command);
-        //    return Ok(result);
-        //}
+        [HttpPost("create")]
+        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateAccountHandler.CreateAccountResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
+        public async Task<ActionResult<CreateAccountHandler.CreateAccountResponse>> PostCreate(CreateAccountHandler.CreateAccount command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
 
         [HttpPost("debit")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(AcceptTransactionHandler.TransactionResults))]

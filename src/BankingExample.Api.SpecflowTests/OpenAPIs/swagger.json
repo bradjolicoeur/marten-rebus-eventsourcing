@@ -543,6 +543,7 @@
           },
           "description": {
             "maxLength": 250,
+            "minLength": 1,
             "type": "string"
           },
           "time": {
@@ -576,6 +577,7 @@
         "type": "object",
         "properties": {
           "owner": {
+            "minLength": 1,
             "type": "string"
           },
           "accountId": {
