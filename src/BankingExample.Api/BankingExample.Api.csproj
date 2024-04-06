@@ -35,8 +35,8 @@
   </ItemGroup>
 
 	<ItemGroup>
-		<InternalsVisibleTo Include="BankingExample.Api.Tests"/>
-		<InternalsVisibleTo Include="BankingExample.Api.SpecflowTests"/>
+		<InternalsVisibleTo Include="BankingExample.Api.Tests" />
+		<InternalsVisibleTo Include="BankingExample.Api.SpecflowTests" />
 	</ItemGroup>
 
 </Project>

@@ -52,7 +52,7 @@ builder.Host.UseWolverine(opts =>
 });
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
-builder.Services.AddAutoMapper(typeof(AcceptTransactionHandler).Assembly);
+builder.Services.AddAutoMapper(typeof(AcceptTransactionHandler).Assembly, typeof(Program).Assembly);
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 // Register Rebus handlers 

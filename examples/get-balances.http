@@ -1,5 +1,4 @@
 POST https://localhost:5001/api/account/balances
-Accept: text/plain
 Content-Type: application/json
 
 {

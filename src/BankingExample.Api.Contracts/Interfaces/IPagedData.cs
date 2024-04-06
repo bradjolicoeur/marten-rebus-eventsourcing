@@ -6,6 +6,5 @@ namespace BankingExample.Api.Contracts.Interfaces
     {
         long Count { get; }
         IEnumerable<T> Data { get; }
-        int Page { get; }
     }
 }
