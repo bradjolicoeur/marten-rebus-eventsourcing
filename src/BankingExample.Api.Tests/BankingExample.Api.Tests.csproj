@@ -8,12 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" Namespace="BankingExample.ApiClient" ClassName="Client">
-      <SourceUri>https://localhost:5001/swagger/v1/swagger.json</SourceUri>
-    </OpenApiReference>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Alba" Version="7.4.1" />
     <PackageReference Include="Marten" Version="7.5.0" />
     <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="8.0.3">
@@ -37,7 +31,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BankingExample.Api.Client\BankingExample.Api.Client.csproj" />
     <ProjectReference Include="..\BankingExample.Api\BankingExample.Api.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="OpenAPIs\swagger.json" ClassName="Client" />
   </ItemGroup>
 
 </Project>

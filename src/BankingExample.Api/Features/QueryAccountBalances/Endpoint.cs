@@ -10,27 +10,27 @@ using System.Threading.Tasks;
 
 namespace BankingExample.Api.Features.QueryAccountBalances
 {
+    public class QueryAccountBalances
+    {
+
+        [Required]
+        public Guid[] Ids { get; set; }
+    }
+
+    public class AccountBalances
+    {
+        public AccountBalances(IEnumerable<Account> data, long count)
+        {
+            Data = data;
+            Count = count;
+        }
+
+        public IEnumerable<Account> Data { get; }
+        public long Count { get; }
+    }
+
     public static class Endpoint
     {
-        public class QueryAccountBalances
-        {
-
-            [Required]
-            public Guid[] Ids { get; set; }
-        }
-
-        public class AccountBalances
-        {
-            public AccountBalances(IEnumerable<Account> data, long count)
-            {
-                Data = data;
-                Count = count;
-            }
-
-            public IEnumerable<Account> Data { get; }
-            public long Count { get; }
-        }
-
         [Tags("Account")]
         [WolverinePost("api/account/balances")]
         public static async Task<AccountBalances> Post(QueryAccountBalances request, IDocumentSession session)

@@ -7,45 +7,45 @@ using System.Threading.Tasks;
 
 namespace BankingExample.Api.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class AdminController : ControllerBase
-    {
-        private readonly IDocumentStore _store;
+    //[Route("api/[controller]")]
+    //[ApiController]
+    //public class AdminController : ControllerBase
+    //{
+    //    private readonly IDocumentStore _store;
 
-        public AdminController(IDocumentStore store)
-        {
-            _store = store;
-        }
+    //    public AdminController(IDocumentStore store)
+    //    {
+    //        _store = store;
+    //    }
 
-        [HttpGet("clear")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public ActionResult<string> ClearDatabase()
-        {
+    //    [HttpGet("clear")]
+    //    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+    //    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
+    //    public ActionResult<string> ClearDatabase()
+    //    {
             
-            // Deletes all the documents stored in a Marten database
-            _store.Advanced.Clean.DeleteAllDocuments();
+    //        // Deletes all the documents stored in a Marten database
+    //        _store.Advanced.Clean.DeleteAllDocuments();
 
-            return Ok("All Documents Deleted");
+    //        return Ok("All Documents Deleted");
 
-        }
+    //    }
 
-        [HttpGet("rebuild")]
-        [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
-        public async Task<ActionResult<string>> RebuildAccount()
-        {
+    //    [HttpGet("rebuild")]
+    //    [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(string))]
+    //    [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(BadRequestResponse))]
+    //    public async Task<ActionResult<string>> RebuildAccount()
+    //    {
 
-            throw new NotImplementedException();
+    //        throw new NotImplementedException();
 
-            //// Deletes all the documents stored in a Marten database
-            //using var daemon = _store.BuildProjectionDaemon();
+    //        //// Deletes all the documents stored in a Marten database
+    //        //using var daemon = _store.BuildProjectionDaemon();
 
-            //await daemon.RebuildProjection<Account>(new CancellationToken());
+    //        //await daemon.RebuildProjection<Account>(new CancellationToken());
 
-            //return Ok("Rebuild Account Completed");
+    //        //return Ok("Rebuild Account Completed");
 
-        }
-    }
+    //    }
+    //}
 }

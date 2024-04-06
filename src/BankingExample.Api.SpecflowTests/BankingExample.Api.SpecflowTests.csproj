@@ -54,13 +54,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <OpenApiReference Include="OpenAPIs\swagger.json" CodeGenerator="NSwagCSharp" ClassName="ApiClient">
-      <SourceUri>https://localhost:5001/swagger/v1/swagger.json</SourceUri>
-    </OpenApiReference>
+    <ProjectReference Include="..\BankingExample.Api.Client\BankingExample.Api.Client.csproj" />
+    <ProjectReference Include="..\BankingExample.Api\BankingExample.Api.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BankingExample.Api\BankingExample.Api.csproj" />
+    <None Update="OpenAPIs\swagger.json" ClassName="ApiClient" />
   </ItemGroup>
 
 </Project>

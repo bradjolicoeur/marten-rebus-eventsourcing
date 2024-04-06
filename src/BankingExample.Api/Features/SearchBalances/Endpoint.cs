@@ -14,20 +14,21 @@ using Marten.Linq.Parsing.Operators;
 
 namespace BankingExample.Api.Features.SearchBalances
 {
+
+    public class SearchAccountBalances : IPagedData<Account>
+    {
+        public SearchAccountBalances(IEnumerable<Account> data, long count)
+        {
+            Data = data;
+            Count = count;
+        }
+
+        public IEnumerable<Account> Data { get; }
+        public long Count { get; }
+    }
+
     public static class Endpoint
     {
-
-        public class SearchAccountBalances : IPagedData<Account>
-        {
-            public SearchAccountBalances(IEnumerable<Account> data, long count)
-            {
-                Data = data;
-                Count = count;
-            }
-
-            public IEnumerable<Account> Data { get; }
-            public long Count { get; }
-        }
 
         [Tags("Account")]
         [WolverineGet("api/account/balances")]
@@ -48,7 +49,6 @@ namespace BankingExample.Api.Features.SearchBalances
 
             return new SearchAccountBalances(articles, stats.TotalResults);
         }
-
 
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Alba;
-using BankingExample.ApiClient;
+using BankingExample.Api.Client;
 
 namespace BankingExample.Api.Tests.Integration
 {
@@ -26,9 +26,9 @@ namespace BankingExample.Api.Tests.Integration
         public async Task get_balances_withclient_ok()
         {
             using var httpClient = _host.Server.CreateClient();
-            var client = new Client(httpClient.BaseAddress.ToString(), httpClient);
+            var client = new BankingClient(httpClient.BaseAddress.ToString(), httpClient);
 
-            var result = await client.BalancesGETAsync(null, null, null, null);
+            var result = await client.GET_api_account_balancesAsync(null, null, null);
 
             await Verifier.Verify(result);
         }

@@ -1,5 +1,6 @@
 ﻿using Alba;
-using BankingExample.ApiClient;
+using BankingExample.Api.Client;
+
 
 namespace BankingExample.Api.Tests.Integration
 {
@@ -31,9 +32,9 @@ namespace BankingExample.Api.Tests.Integration
         public async Task create_account_withclient_ok()
         {
             using var httpClient = _host.Server.CreateClient();
-            var client = new Client(httpClient.BaseAddress.ToString(), httpClient);
+            var client = new BankingClient(httpClient.BaseAddress.ToString(), httpClient);
 
-            var result = await client.CreateAsync(new CreateAccount { Owner = "ClientTest", StartingBalance = 500 });
+            var result = await client.POST_api_account_createAsync(new CreateAccount { Owner = "ClientTest", StartingBalance = 500 });
 
             await Verifier.Verify(result);
         }

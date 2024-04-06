@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Api", "BankingExample.Api\BankingExample.Api.csproj", "{F28D00F7-5813-4015-A1B7-0BC2087D05AE}"
 EndProject
@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Api.Contract
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Api.Tests", "BankingExample.Api.Tests\BankingExample.Api.Tests.csproj", "{8D572931-FBD5-4204-8CBF-63B40F78642B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Api.SpecflowTests", "BankingExample.Api.SpecflowTests\BankingExample.Api.SpecflowTests.csproj", "{36975315-FB64-438A-925B-DE9312BC07AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BankingExample.Api.SpecflowTests", "BankingExample.Api.SpecflowTests\BankingExample.Api.SpecflowTests.csproj", "{36975315-FB64-438A-925B-DE9312BC07AA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankingExample.Api.Client", "BankingExample.Api.Client\BankingExample.Api.Client.csproj", "{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +127,18 @@ Global
 		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|x64.Build.0 = Release|Any CPU
 		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|x86.ActiveCfg = Release|Any CPU
 		{36975315-FB64-438A-925B-DE9312BC07AA}.Release|x86.Build.0 = Release|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Debug|x64.Build.0 = Debug|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Debug|x86.Build.0 = Debug|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Release|x64.ActiveCfg = Release|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Release|x64.Build.0 = Release|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Release|x86.ActiveCfg = Release|Any CPU
+		{B41BE3A3-4E60-4B65-B0F8-F802A134D05D}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

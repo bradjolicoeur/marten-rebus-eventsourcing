@@ -1,4 +1,5 @@
-﻿using BankingExample.Api.SpecflowTests.Hooks;
+﻿using BankingExample.Api.Client;
+using BankingExample.Api.SpecflowTests.Hooks;
 using FluentAssertions;
 using System;
 using System.Linq;
@@ -31,9 +32,9 @@ namespace BankingExample.Api.SpecflowTests.Steps
         public async Task GivenAnAccountForBobIsCreatedWithABeginningBalanceOf(double p0)
         {
 
-            var client = new ApiClient(_httpClient.BaseAddress.ToString(), _httpClient);
+            var client = new BankingClient(_httpClient.BaseAddress.ToString(), _httpClient);
 
-            var result = await client.CreateAsync(new CreateAccount { Owner = "Bob", StartingBalance = p0 });
+            var result = await client.POST_api_account_createAsync(new CreateAccount { Owner = "Bob", StartingBalance = p0 });
 
             _BobAccountId = result.AccountId;
 
@@ -43,9 +44,9 @@ namespace BankingExample.Api.SpecflowTests.Steps
         public async Task GivenAndAccountForTimIsCreatedWithABeginningBalanceOf(double p0)
         {
 
-            var client = new ApiClient(_httpClient.BaseAddress.ToString(), _httpClient);
+            var client = new BankingClient(_httpClient.BaseAddress.ToString(), _httpClient);
 
-            var result = await client.CreateAsync(new CreateAccount { Owner = "Tim", StartingBalance = p0 });
+            var result = await client.POST_api_account_createAsync(new CreateAccount { Owner = "Tim", StartingBalance = p0 });
 
             _TimAccountId = result.AccountId;
 
@@ -55,9 +56,9 @@ namespace BankingExample.Api.SpecflowTests.Steps
         public async Task WhenIsTransfertFromBobToTim(double p0)
         {
 
-            var client = new ApiClient(_httpClient.BaseAddress.ToString(), _httpClient);
+            var client = new BankingClient(_httpClient.BaseAddress.ToString(), _httpClient);
 
-            var result = await client.DebitAsync(new AccountTransaction{ Amount = p0, Description="Test Transfer", From = _BobAccountId, To = _TimAccountId});
+            var result = await client.POST_api_account_debitAsync(new AccountTransaction{ Amount = p0, Description="Test Transfer", From = _BobAccountId, To = _TimAccountId});
 
             result.Success.Should().Be(true);
 
@@ -73,9 +74,9 @@ namespace BankingExample.Api.SpecflowTests.Steps
         [Then(@"the balance for Tim will be (.*)")]
         public async Task ThenTheBalanceForTimWillBe(double p0)
         {
-            var client = new ApiClient(_httpClient.BaseAddress.ToString(), _httpClient);
+            var client = new BankingClient(_httpClient.BaseAddress.ToString(), _httpClient);
 
-            var result = await client.BalancesPOSTAsync(new QueryAccountBalance { Ids = new[] { _TimAccountId } });
+            var result = await client.POST_api_account_balancesAsync(new QueryAccountBalances { Ids = new[] { _TimAccountId } });
 
             result.Data.FirstOrDefault(q => q.Id == _TimAccountId).Balance.Should().Be(p0);
         }
@@ -83,9 +84,9 @@ namespace BankingExample.Api.SpecflowTests.Steps
         [Then(@"the balance for Bob will be (.*)")]
         public async Task ThenTheBalanceForBobWillBe(double p0)
         {
-            var client = new ApiClient(_httpClient.BaseAddress.ToString(), _httpClient);
+            var client = new BankingClient(_httpClient.BaseAddress.ToString(), _httpClient);
 
-            var result = await client.BalancesPOSTAsync(new QueryAccountBalance { Ids = new[] { _BobAccountId } });
+            var result = await client.POST_api_account_balancesAsync(new QueryAccountBalances { Ids = new[] { _BobAccountId } });
 
             result.Data.FirstOrDefault(q => q.Id == _BobAccountId).Balance.Should().Be(p0);
         }

@@ -8,16 +8,16 @@ using BankingExample.Handlers;
 
 namespace BankingExample.Api.Controllers
 {
-    [Route("api/account")]
-    [ApiController]
-    public class AccountController : ControllerBase
-    {
-        private readonly IMediator _mediator;
+    //[Route("api/account")]
+    //[ApiController]
+    //public class AccountController : ControllerBase
+    //{
+    //    private readonly IMediator _mediator;
 
-        public AccountController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
+    //    public AccountController(IMediator mediator)
+    //    {
+    //        _mediator = mediator;
+    //    }
 
         //[HttpPost("create")]
         //[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CreateAccountHandler.CreateAccountResponse))]
@@ -64,5 +64,5 @@ namespace BankingExample.Api.Controllers
         //    return Ok(result);
         //}
 
-    }
+    //}
 }

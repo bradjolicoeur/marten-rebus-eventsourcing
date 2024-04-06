@@ -1,4 +1,5 @@
-﻿using BankingExample.Api.SpecflowTests.Hooks;
+﻿using BankingExample.Api.Client;
+using BankingExample.Api.SpecflowTests.Hooks;
 using FluentAssertions;
 using System;
 using System.Linq;
@@ -17,9 +18,9 @@ namespace BankingExample.Api.SpecflowTests.Steps
         {
             using (var httpClient = TestRunHooks.AlbaHost.Server.CreateClient())
             {
-                var client = new ApiClient(httpClient.BaseAddress.ToString(), httpClient);
+                var client = new BankingClient(httpClient.BaseAddress.ToString(), httpClient);
 
-                var result = await client.CreateAsync(new CreateAccount { Owner = "ClientTest", StartingBalance = p0 });
+                var result = await client.POST_api_account_createAsync(new CreateAccount { Owner = "ClientTest", StartingBalance = p0 });
 
                 _accountId = result.AccountId;
             }
@@ -30,9 +31,9 @@ namespace BankingExample.Api.SpecflowTests.Steps
         {
             using (var httpClient = TestRunHooks.AlbaHost.Server.CreateClient())
             {
-                var client = new ApiClient(httpClient.BaseAddress.ToString(), httpClient);
+                var client = new BankingClient(httpClient.BaseAddress.ToString(), httpClient);
 
-                var result = await client.BalancesPOSTAsync(new QueryAccountBalance { Ids = new [] { _accountId } });
+                var result = await client.POST_api_account_balancesAsync(new QueryAccountBalances { Ids = new [] { _accountId } });
 
                 result.Data.FirstOrDefault(q => q.Id == _accountId).Balance.Should().Be(p0);
             }

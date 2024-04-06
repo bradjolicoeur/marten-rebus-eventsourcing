@@ -26,7 +26,7 @@ builder.Services.AddApiVersioning(config =>
     config.ReportApiVersions = true;
 });
 
-builder.Services.AddControllers();
+//builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -83,16 +83,16 @@ app.UseHealthChecks("/health");
 
 app.UseRouting();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 // global error handler
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
 
-app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});
+//app.UseEndpoints(endpoints =>
+//{
+//    endpoints.MapControllers();
+//});
 
 app.MapWolverineEndpoints();
 
