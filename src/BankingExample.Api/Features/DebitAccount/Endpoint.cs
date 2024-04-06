@@ -7,8 +7,7 @@ using Wolverine.Http;
 using AutoMapper;
 using BankingExample.Contracts.Commands;
 using BankingExample.Domain.Projections;
-using MediatR;
-using Rebus.Bus;
+using Wolverine;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -65,7 +64,7 @@ namespace BankingExample.Api.Features.DebitAccount
 
         [Tags("Account")]
         [WolverinePost("api/account/debit")]
-        public static async Task<TransactionResults> Post(AccountTransaction request, IDocumentSession session, IMapper mapper, IBus bus)
+        public static async Task<TransactionResults> Post(AccountTransaction request, IDocumentSession session, IMapper mapper, IMessageBus bus)
         {
             TransactionResults result;
 
@@ -103,7 +102,7 @@ namespace BankingExample.Api.Features.DebitAccount
             session.SaveChanges();
 
             if (command != null)
-                await bus.SendLocal(command);
+                await bus.SendAsync(command);
 
             return result;
         }

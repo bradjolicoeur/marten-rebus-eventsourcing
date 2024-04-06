@@ -6,5 +6,5 @@ Content-Type: application/json
   "from": "dbf31c29-2418-49f9-a543-847054c4822a",
   "description": "Transfer",
   "time": "2021-10-14T19:37:40.364Z",
-  "amount": 50000
+  "amount": 5
 }

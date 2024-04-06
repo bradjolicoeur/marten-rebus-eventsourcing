@@ -2,9 +2,7 @@
 using System;
 using Wolverine.Http;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using BankingExample.Domain.Events;
-using MediatR;
 using Marten;
 using Microsoft.AspNetCore.Http;
 

@@ -13,24 +13,18 @@
     <PackageReference Include="Marten" Version="7.5.0" />
     <PackageReference Include="Marten.CommandLine" Version="7.5.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.20.0" />
-    <PackageReference Include="Rebus" Version="8.2.4" />
-    <PackageReference Include="Rebus.Microsoft.Extensions.Logging" Version="5.0.0" />
-    <PackageReference Include="Rebus.PostgreSql" Version="9.0.1" />
-    <PackageReference Include="Rebus.RabbitMq" Version="9.1.0" />
-    <PackageReference Include="Rebus.ServiceProvider" Version="10.1.2" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
     <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.5.0" />
     <PackageReference Include="WolverineFx" Version="2.1.2" />
     <PackageReference Include="WolverineFx.Http" Version="2.1.2" />
     <PackageReference Include="WolverineFx.Marten" Version="2.1.2" />
+    <PackageReference Include="WolverineFx.RabbitMQ" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BankingExample.Api.Contracts\BankingExample.Api.Contracts.csproj" />
-    <ProjectReference Include="..\BankingExample.Bus\BankingExample.Bus.csproj" />
     <ProjectReference Include="..\BankingExample.Contracts\BankingExample.Contracts.csproj" />
     <ProjectReference Include="..\BankingExample.Domain\BankingExample.Domain.csproj" />
-    <ProjectReference Include="..\BankingExample.Handlers\BankingExample.Handlers.csproj" />
   </ItemGroup>
 
 	<ItemGroup>
