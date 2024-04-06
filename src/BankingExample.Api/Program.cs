@@ -2,7 +2,6 @@ using Asp.Versioning;
 using BankingExample.Api.Helpers;
 using BankingExample.Api.Middleware;
 using BankingExample.Bus.BusHandlers;
-using BankingExample.Handlers;
 using FluentValidation;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,7 +25,6 @@ builder.Services.AddApiVersioning(config =>
     config.ReportApiVersions = true;
 });
 
-//builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
 {
@@ -51,8 +49,8 @@ builder.Host.UseWolverine(opts =>
     opts.Policies.UseDurableLocalQueues();
 });
 
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
-builder.Services.AddAutoMapper(typeof(AcceptTransactionHandler).Assembly, typeof(Program).Assembly);
+
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddValidatorsFromAssemblyContaining<Program>();
 
 // Register Rebus handlers 
@@ -88,11 +86,6 @@ app.UseRouting();
 // global error handler
 app.UseMiddleware<ErrorHandlerMiddleware>();
 
-
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllers();
-//});
 
 app.MapWolverineEndpoints();
 

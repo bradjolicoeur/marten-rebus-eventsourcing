@@ -8,9 +8,9 @@ using System;
 using Wolverine.Http;
 using BankingExample.Api.Contracts.Interfaces;
 using Marten.Linq;
-using BankingExample.Handlers.Helpers;
 using System.Linq;
 using Marten.Linq.Parsing.Operators;
+using BankingExample.Api.Helpers;
 
 namespace BankingExample.Api.Features.SearchBalances
 {

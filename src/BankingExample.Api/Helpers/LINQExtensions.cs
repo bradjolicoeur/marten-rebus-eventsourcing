@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BankingExample.Handlers.Helpers
+namespace BankingExample.Api.Helpers
 {
     public static class LINQExtensions
     {
